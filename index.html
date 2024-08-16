@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Enter a number:</h2>
+    <input
+      type="number"
+      id="input"
+      oninput="validateInputField()"
+      placeholder="Enter a number"
+    />
+    <p id="message"></p>
+
+    <script>
+      const decimalRegex = /^[+-]?(\d*\.\d+|\d+\.\d*)$/;
+      const validateInputField = () => {
+        const inputValue = document.getElementById("input").value;
+        const message = document.getElementById("message");
+
+        if (inputValue === "") {
+          message.textContent = "";
+          return;
+        }
+
+        if (decimalRegex.test(inputValue)) {
+          message.textContent = "Decimal values are neither even nor odd";
+          return;
+        }
+        const value = parseInt(inputValue);
+
+        if (value < 0) message.textContent = "Enter a positive value";
+        else if (value % 2 === 0) {
+          const first = value + 2;
+          const second = value + 4;
+          const third = value + 6;
+          message.textContent =
+            "The next three even numbers are: " +
+            first +
+            ", " +
+            second +
+            ", " +
+            third;
+        } else {
+          const first = value + 2;
+          const second = value + 4;
+          const third = value + 6;
+          message.textContent =
+            "The next three odd numbers are: " +
+            first +
+            ", " +
+            second +
+            ", " +
+            third;
+        }
+      };
+    </script>
+  </body>
+</html>
